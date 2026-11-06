@@ -14,6 +14,13 @@ other pads and off each other, and writes:
 
 Copper tracks and zones are ignored; SMD pads are too (they do not reach the back).
 
+**Demo:** [existedinnettw.github.io/flywire](https://existedinnettw.github.io/flywire/), the
+page for [`examples/chaser`](examples/chaser) (a 555 clocking a CD4017 that walks four LEDs),
+rebuilt by the `pages` workflow on every push to `main`
+([wiring.txt](https://existedinnettw.github.io/flywire/wiring.txt),
+[wiring.json](https://existedinnettw.github.io/flywire/wiring.json),
+[chaser.kicad_pcb](https://existedinnettw.github.io/flywire/chaser.kicad_pcb)).
+
 ## use
 
 ```bash
@@ -67,7 +74,12 @@ two agree.
 uv sync
 uv run pytest        # needs node for the Python / JS bender comparison
 uv run ruff format src tests && uv run ruff check src tests
+uv run flywire examples/chaser/chaser.kicad_pcb    # the demo, in build/
 ```
+
+`examples/chaser/chaser.kicad_pcb` is written by `examples/chaser/make_board.py` from
+KiCad's stock footprints; it needs KiCad's `pcbnew` module, so run it with the Python KiCad
+installs (`/usr/bin/python3 examples/chaser/make_board.py`).
 
 The page is `src/flywire/web/` (`index.html`, `style.css`, `bend.js`, `app.js`), inlined
 into one file with the board data by `report.html()`; it uses no libraries.
