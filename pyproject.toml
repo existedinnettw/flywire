@@ -1,0 +1,25 @@
+[project]
+    name = "flywire"
+    version = "0.1.0"
+    description = "Point-to-point wiring for hand-built KiCad boards (wire wrap, fly wires): wire list and an interactive HTML back view"
+    readme = "README.md"
+    authors = [{ name = "insleker", email = "bkinnightskytw@gmail.com" }]
+    license = "MPL-2.0"
+    requires-python = ">=3.12"
+    dependencies = ["sexpdata>=1.0.2"]
+
+    [project.scripts]
+        flywire = "flywire.cli:main"
+
+[dependency-groups]
+    dev = ["pytest>=9.0.2", "ruff>=0.14.13"]
+
+[build-system]
+    requires = ["uv_build>=0.10.8,<0.13.0"]
+    build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+    testpaths = ["tests"]
+
+[tool.ruff]
+    line-length = 110

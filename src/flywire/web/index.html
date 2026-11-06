@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} wiring</title>
+<style>/*CSS*/</style>
+</head>
+<body>
+<header id="top">
+  <div class="brand"><b>{{TITLE}}</b><span>wiring</span></div>
+  <div id="stats"></div>
+  <div class="grow"></div>
+  <div class="seg" id="side" role="group" aria-label="Side">
+    <button data-side="back" title="Seen from the back, where the wires are (F flips)">Back</button>
+    <button data-side="front" title="Seen from the front (F flips)">Front</button>
+  </div>
+  <label class="chk"><input type="checkbox" id="opt-num" checked> Numbers</label>
+  <label class="chk"><input type="checkbox" id="opt-hide"> Hide done</label>
+  <button id="edit" class="tog" title="Bend, reconnect, add and delete wires (E)">Edit</button>
+  <span class="editonly">
+    <button id="autobend" title="Bend every wire you have not bent by hand again">Auto-bend</button>
+    <button id="undo" title="Undo (Ctrl+Z)">Undo</button>
+    <button id="reset" title="Back to the proposed wiring (click twice)">Reset</button>
+  </span>
+  <button id="export" title="Download the wiring as JSON, for flywire --edits">Export</button>
+  <button id="theme" class="icon" title="Light / dark">&#9680;</button>
+  <button id="help" class="icon" title="Help (?)">?</button>
+</header>
+<main>
+  <aside id="list">
+    <div class="listhead">
+      <input id="filter" type="search" placeholder="Filter: net, part, pin…" autocomplete="off">
+    </div>
+    <div id="problems"></div>
+    <table id="wires">
+      <thead><tr><th title="Done">&#10003;</th><th>#</th><th>from</th><th>to</th><th class="num" title="length along the curve / cut length">mm</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </aside>
+  <div id="resizer" title="Drag to resize"></div>
+  <section id="view">
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="tip"></div>
+    <div id="hint"></div>
+    <div id="toast"></div>
+  </section>
+</main>
+<dialog id="helpdlg">
+  <h2>flywire</h2>
+  <p>Point-to-point wires for building the board by hand, drawn as seen from the <b>back</b>
+    (where the wires run; x is mirrored). Each wire joins two pins; with the default limit a
+    pin takes at most two wires, so every net is a chain.</p>
+  <h3>Look</h3>
+  <ul>
+    <li>Wheel zooms, drag pans, double-click fits. <kbd>F</kbd> flips back / front.</li>
+    <li>Click a wire or a row to select it; <kbd>&uarr;</kbd> <kbd>&darr;</kbd> step through the list; <kbd>Space</kbd> ticks it done.</li>
+    <li>Click a pin to show its net. <kbd>Esc</kbd> clears.</li>
+  </ul>
+  <h3>Edit (<kbd>E</kbd>)</h3>
+  <ul>
+    <li>Drag the round handle of the selected wire to bend it.</li>
+    <li>Drag a square end handle onto another pin of the same net to reconnect it.</li>
+    <li>Click a pin, then another pin of its net, to add a wire.</li>
+    <li><kbd>Del</kbd> deletes the selected wire, <kbd>A</kbd> bends it automatically, <kbd>S</kbd> straightens it,
+      <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes.</li>
+    <li>The list above the wires says when a net falls apart or a pin takes too many wires.</li>
+  </ul>
+  <p>Your edits and ticks stay in this browser. <b>Export</b> saves them as JSON; run
+    <code>flywire board.kicad_pcb --edits wiring.json</code> to rebuild the wire list and this page with them.</p>
+  <form method="dialog"><button>Close</button></form>
+</dialog>
+<script>const DATA = /*DATA*/;</script>
+<script>/*BEND*/</script>
+<script>/*APP*/</script>
+</body>
+</html>
